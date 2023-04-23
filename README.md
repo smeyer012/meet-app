@@ -6,7 +6,7 @@ This project will showcase my ability to build a serverless, progressive web app
 
 ## Features
 
-#### 1. Filter Events by City
+### 1. Filter Events by City
 
 **User Story** - As a user, I should be able to filter events by city so that I can find events that will take place in that location. 
 
@@ -21,7 +21,7 @@ This project will showcase my ability to build a serverless, progressive web app
     When the user selects a city (e.g., “Berlin, Germany”) from the list  
     Then their city should be changed to that city (i.e., “Berlin, Germany”) and the user should receive a list of upcoming events in that city  
 
-#### 2. Show/Hide Event's Details
+### 2. Show/Hide Event's Details
 
 **User Story** - As a user, I should be able to click a button to show or hide a box which contains event details so that I can gather more information about the event.  
 
@@ -36,7 +36,7 @@ This project will showcase my ability to build a serverless, progressive web app
     When the user clicks the close/contract button  
     Then the event detail box will be hidden   
 
-#### 3. Specify the Number of Events
+### 3. Specify the Number of Events
 
 **User Story** - As a user, I should be able to choose how many events will display within the event list page, so that I can browse a particular amount of events that I want to see.  
 
@@ -49,7 +49,7 @@ This project will showcase my ability to build a serverless, progressive web app
     Then the list page will show the specified number of events  
 
 
-#### 4. Be Available Offline
+### 4. Be Available Offline
 
 **User Story** - As a user, I should be able to view the event list while offline so that the service is still available to me even when my device is not connected to the internet.  
 
@@ -61,7 +61,7 @@ This project will showcase my ability to build a serverless, progressive web app
     When the user attempts to view event data in another city  
     Then an error message will appear to inform the user of the internet access issue  
 
-#### 5. Display Chart Showing the Number of Upcoming Events by City
+### 5. Display Chart Showing the Number of Upcoming Events by City
 
 **User Story** - As a user, I should be able to view a chart that shows the number of upcoming events by city, so that I can assess the liveliness of a given location.  
 
@@ -70,7 +70,7 @@ This project will showcase my ability to build a serverless, progressive web app
     When the user chooses to view the data by clicking a link on the website  
     Then show a chart with the number of events per city  
 
-#### 6. Add an app shortcut to the home screen.
+### 6. Add an app shortcut to the home screen.
 
 **User Story** - As a user, I would like to be able to add the app shortcut to my home screen so that I can open the app faster.
 
