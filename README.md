@@ -4,6 +4,10 @@
 
 This project will showcase my ability to build a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. As a PWA it will pass Lighthouse’s PWA checklist. The app will use the Google Calendar API to fetch upcoming events, AWS lambda for serverless functions, and React axios and async/await for the API call. The app will implement an alert system using an OOP approach to show information to the user. It will also include data visualization components. Users will be able to access data while offline or if they have a slow connection. Data visualization will also be included to enhance the app's value as an information source. Finally, the app will be monitored using an online monitoring tool.
 
+## Serverless Functions
+
+Serverless functions will be utilized for the API call to Google. They will also be beneficial in generating access tokens with the OAuth framework, which will be needed for the API call.
+
 ## Features
 
 ### 1. Filter Events by City
