@@ -37,7 +37,7 @@ const getToken = async (code) => {
     try {
         const encodeCode = encodeURIComponent(code);
 
-        const response = await fetch('https://oauth2.googleapis.com/token' + '/' + encodeCode);
+        const response = await fetch('522361345322-dnoogn203vjlu2lfba873magk8ro4aga.apps.googleusercontent.com' + '/' + encodeCode);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
@@ -76,7 +76,7 @@ export const getEvents = async () => {
 
     if (token) {
         removeQuery();
-        const url = 'https://oauth2.googleapis.com/token' + '/' + token;
+        const url = '522361345322-dnoogn203vjlu2lfba873magk8ro4aga.apps.googleusercontent.com' + '/' + token;
         const result = await axios.get(url);
         if (result.data) {
             var locations = extractLocations(result.data.events);
