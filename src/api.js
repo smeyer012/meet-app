@@ -37,7 +37,7 @@ const getToken = async (code) => {
     try {
         const encodeCode = encodeURIComponent(code);
 
-        const response = await fetch('522361345322-dnoogn203vjlu2lfba873magk8ro4aga.apps.googleusercontent.com' + '/' + encodeCode);
+        const response = await fetch('https://du4frj2rdb3bnay5oowzpjtlgq0aqoom.lambda-url.us-east-2.on.aws' + '/' + encodeCode);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
@@ -76,7 +76,7 @@ export const getEvents = async () => {
 
     if (token) {
         removeQuery();
-        const url = '522361345322-dnoogn203vjlu2lfba873magk8ro4aga.apps.googleusercontent.com' + '/' + token;
+        const url = 'https://rrkvjcomuzl6cwohzh746jhd4m0xornd.lambda-url.us-east-2.on.aws' + '/' + token;
         const result = await axios.get(url);
         if (result.data) {
             var locations = extractLocations(result.data.events);
