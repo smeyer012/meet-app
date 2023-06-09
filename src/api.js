@@ -1,17 +1,11 @@
-<<<<<<< Updated upstream
-=======
 import { mockData } from './mock-data';
 import axios from 'axios';
 import NProgress from 'nprogress';
 
->>>>>>> Stashed changes
 export const extractLocations = (events) => {
     var extractLocations = events.map((event) => event.location);
     var locations = [...new Set(extractLocations)];
     return locations;
-<<<<<<< Updated upstream
-};
-=======
 };
 
 const checkToken = async (accessToken) => {
@@ -82,7 +76,7 @@ export const getEvents = async () => {
 
     if (token) {
         removeQuery();
-        const url = 'YOUR_GET_EVENTS_API_ENDPOINT' + '/' + token;
+        const url = 'https://oauth2.googleapis.com/token' + '/' + token;
         const result = await axios.get(url);
         if (result.data) {
             var locations = extractLocations(result.data.events);
@@ -113,4 +107,3 @@ export const getAccessToken = async () => {
     }
     return accessToken;
 }
->>>>>>> Stashed changes
