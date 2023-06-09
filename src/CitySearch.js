@@ -21,10 +21,7 @@ class CitySearch extends Component {
             query: suggestion,
             showSuggestions: false
         });
-<<<<<<< Updated upstream
-=======
         this.props.updateEvents(suggestion);
->>>>>>> Stashed changes
     }
     render() {
         return (
