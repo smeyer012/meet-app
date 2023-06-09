@@ -13,12 +13,18 @@ class CitySearch extends Component {
         this.setState({
             query: value,
             suggestions,
+            showSuggestions: true
         });
     }
     handleItemClicked = (suggestion) => {
         this.setState({
-            query: suggestion
+            query: suggestion,
+            showSuggestions: false
         });
+<<<<<<< Updated upstream
+=======
+        this.props.updateEvents(suggestion);
+>>>>>>> Stashed changes
     }
     render() {
         return (
@@ -28,8 +34,9 @@ class CitySearch extends Component {
                     className="city"
                     value={this.state.query}
                     onChange={this.handleInputChanged}
+                    onFocus={() => { this.setState({ showSuggestions: true }) }}
                 />
-                <ul className="suggestions">
+                <ul className="suggestions" style={this.state.showSuggestions ? {} : { display: 'none' }}>
                     {this.state.suggestions.map((suggestion) => (
                         <li
                             key={suggestion}
