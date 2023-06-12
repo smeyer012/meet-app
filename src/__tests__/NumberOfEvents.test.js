@@ -6,7 +6,7 @@ import { mockData } from '../mock-data';
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsBox;
     beforeAll(() => {
-        NumberOfEventsBox = shallow(<NumberOfEvents />);
+        NumberOfEventsBox = shallow(<NumberOfEvents updateEvents={() => { }} displayNum={"32"} />);
     });
     test('render number input', () => {
         expect(NumberOfEventsBox.find('.eventNumber')).toHaveLength(1);

@@ -1,5 +1,3 @@
-app test
-
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from '../App';
@@ -73,6 +71,25 @@ describe('<App /> integration', () => {
         await suggestionItems.at(suggestionItems.length - 1).simulate('click');
         const allEvents = await getEvents();
         expect(AppWrapper.state('events')).toEqual(allEvents);
+        AppWrapper.unmount();
+    });
+
+    test("state changes when value of input changes", () => {
+        const AppWrapper = mount(<App />);
+        const eventCount = AppWrapper.state('displayNum');
+        const inputNumber = AppWrapper.find(NumberOfEvents).state('eventNumber');
+        expect(eventCount).toEqual(inputNumber);
+        AppWrapper.unmount();
+    });
+
+    test("get list length that is the same number of events selected by the user", async () => {
+        const AppWrapper = mount(<App />);
+        const NumberWrapper = AppWrapper.find(NumberOfEvents);
+        const inputNumber = Math.floor(Math.random() * 32);
+        const event = { target: { value: inputNumber } };
+        await NumberWrapper.instance().handleInputChanged(event);
+        const selectedNumber = NumberWrapper.state("eventNumber");
+        expect(inputNumber).toEqual(selectedNumber);
         AppWrapper.unmount();
     });
 

@@ -8,16 +8,21 @@ import { getEvents, extractLocations } from './api';
 class App extends Component {
   state = {
     events: [],
-    locations: []
+    locations: [],
+    displayNum: 32,
+    chosenLocation: ''
   }
 
-  updateEvents = (location) => {
+  updateEvents = (eventNumber, location) => {
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
+      const locationEvents = (location === 'all' || location === undefined) ?
         events :
         events.filter((event) => event.location === location);
+      const showEvents = locationEvents.slice(0, eventNumber);
       this.setState({
-        events: locationEvents
+        events: showEvents,
+        displayNum: eventNumber,
+        chosenLocation: location
       });
     });
   }
@@ -38,8 +43,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-        <NumberOfEvents />
+        <CitySearch locations={this.state.locations} displayNum={this.state.displayNum} updateEvents={this.updateEvents} />
+        <NumberOfEvents displayNum={this.state.displayNum} updateEvents={this.updateEvents} location={this.state.chosenLocation} />
         <EventList events={this.state.events} />
       </div>
     );
