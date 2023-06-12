@@ -15,7 +15,7 @@ class App extends Component {
 
   updateEvents = (eventNumber, location) => {
     getEvents().then((events) => {
-      const locationEvents = (location === 'all' || location === undefined) ?
+      const locationEvents = (location === 'all' || location === undefined || location === '') ?
         events :
         events.filter((event) => event.location === location);
       const showEvents = locationEvents.slice(0, eventNumber);
