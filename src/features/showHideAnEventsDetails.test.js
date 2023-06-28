@@ -2,7 +2,6 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { mockData } from '../mock-data';
-import { extractLocations } from '../api';
 import App from '../App';
 import Event from '../Event';
 
