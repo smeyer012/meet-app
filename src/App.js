@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 class App extends Component {
   state = {
@@ -13,7 +13,8 @@ class App extends Component {
     displayNum: 32,
     chosenLocation: '',
     infoAlert: '',
-    errorAlert: ''
+    errorAlert: '',
+    warningAlert: ''
   }
   //const[infoAlert, setInfoAlert] = useState("");
 
@@ -23,8 +24,18 @@ class App extends Component {
     this.setState(alertObj)
   }
 
+  onlineCheck() {
+    console.log("checked")
+    if (!navigator.onLine) {
+      this.setState({
+        alertText: "You are offline. Events have been loaded from your browser's memory. They may not be the most up-to-date."
+      });;
+    }
+  }
+
   updateEvents = (eventNumber, location) => {
     getEvents().then((events) => {
+      this.onlineCheck();
       const locationEvents = (location === 'all' || location === undefined || location === '') ?
         events :
         events.filter((event) => event.location === location);
@@ -37,7 +48,9 @@ class App extends Component {
     });
   }
 
+
   componentDidMount() {
+    this.onlineCheck();
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
@@ -56,6 +69,7 @@ class App extends Component {
         <div className="alerts-container">
           {this.state.infoAlert.length ? <InfoAlert text={this.state.infoAlert} /> : null}
           {this.state.errorAlert.length ? <ErrorAlert text={this.state.errorAlert} /> : null}
+          {this.state.warningAlert.length ? <WarningAlert text={this.state.warningAlert} /> : null}
         </div>
         <CitySearch locations={this.state.locations} displayNum={this.state.displayNum} updateEvents={this.updateEvents} setAlertText={this.setAlertText} />
         <NumberOfEvents displayNum={this.state.displayNum} updateEvents={this.updateEvents} location={this.state.chosenLocation} setAlertText={this.setAlertText} />
