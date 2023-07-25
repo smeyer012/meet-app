@@ -4,13 +4,23 @@ import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
 import { getEvents, extractLocations } from './api';
+import { InfoAlert, ErrorAlert } from './components/Alert';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
     displayNum: 32,
-    chosenLocation: ''
+    chosenLocation: '',
+    infoAlert: '',
+    errorAlert: ''
+  }
+  //const[infoAlert, setInfoAlert] = useState("");
+
+  setAlertText = (alertText, alertType) => {
+    let alertObj = [];
+    alertObj[alertType] = alertText;
+    this.setState(alertObj)
   }
 
   updateEvents = (eventNumber, location) => {
@@ -43,8 +53,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} displayNum={this.state.displayNum} updateEvents={this.updateEvents} />
-        <NumberOfEvents displayNum={this.state.displayNum} updateEvents={this.updateEvents} location={this.state.chosenLocation} />
+        <div className="alerts-container">
+          {this.state.infoAlert.length ? <InfoAlert text={this.state.infoAlert} /> : null}
+          {this.state.errorAlert.length ? <ErrorAlert text={this.state.errorAlert} /> : null}
+        </div>
+        <CitySearch locations={this.state.locations} displayNum={this.state.displayNum} updateEvents={this.updateEvents} setAlertText={this.setAlertText} />
+        <NumberOfEvents displayNum={this.state.displayNum} updateEvents={this.updateEvents} location={this.state.chosenLocation} setAlertText={this.setAlertText} />
         <EventList events={this.state.events} />
       </div>
     );
