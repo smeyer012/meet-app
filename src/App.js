@@ -25,13 +25,29 @@ class App extends Component {
   }
 
   onlineCheck() {
-    console.log("checked")
-    if (!navigator.onLine) {
+    if (navigator.onLine) {
       this.setState({
-        alertText: "You are offline. Events have been loaded from your browser's memory. They may not be the most up-to-date."
-      });;
+        warningAlert: ""
+      });
+    } else {
+      this.setState({
+        warningAlert: "You are offline. Events have been loaded from your browser's memory. They may not be the most up-to-date."
+      });
     }
   }
+
+  // useEffect(() => {
+  //   if (navigator.onLine) {
+  //     this.setState({
+  //       warningAlert: ""
+  //     });
+  //   } else {
+  //     this.setState({
+  //       warningAlert: "You are offline. Events have been loaded from your browser's memory. They may not be the most up-to-date."
+  //     });
+  //   }
+  //   fetchData();
+  // }, [chosenLocation, displayNum]);
 
   updateEvents = (eventNumber, location) => {
     getEvents().then((events) => {
