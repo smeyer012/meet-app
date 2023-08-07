@@ -16,7 +16,6 @@ class App extends Component {
     errorAlert: '',
     warningAlert: ''
   }
-  //const[infoAlert, setInfoAlert] = useState("");
 
   setAlertText = (alertText, alertType) => {
     let alertObj = [];
@@ -36,19 +35,6 @@ class App extends Component {
     }
   }
 
-  // useEffect(() => {
-  //   if (navigator.onLine) {
-  //     this.setState({
-  //       warningAlert: ""
-  //     });
-  //   } else {
-  //     this.setState({
-  //       warningAlert: "You are offline. Events have been loaded from your browser's memory. They may not be the most up-to-date."
-  //     });
-  //   }
-  //   fetchData();
-  // }, [chosenLocation, displayNum]);
-
   updateEvents = (eventNumber, location) => {
     getEvents().then((events) => {
       this.onlineCheck();
@@ -63,7 +49,6 @@ class App extends Component {
       });
     });
   }
-
 
   componentDidMount() {
     this.onlineCheck();
