@@ -3,6 +3,7 @@ import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import CityEventsChart from './CityEventsChart';
 import { getEvents, extractLocations } from './api';
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
       <div className="App">
         <CitySearch locations={this.state.locations} displayNum={this.state.displayNum} updateEvents={this.updateEvents} />
         <NumberOfEvents displayNum={this.state.displayNum} updateEvents={this.updateEvents} location={this.state.chosenLocation} />
+        <CityEventsChart allLocations={this.state.locations} events={this.state.events} />
         <EventList events={this.state.events} />
       </div>
     );
