@@ -39,7 +39,7 @@ const CityEventsChart = ({ allLocations, events }) => {
                 <XAxis type="category" dataKey="city" name="City" />
                 <YAxis type="number" dataKey="count" name="Number of Events" />
                 <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-                <Scatter name="Events per city" data={this.state.data} fill="#8884d8" />
+                <Scatter name="Events per city" data={data} fill="#8884d8" />
             </ScatterChart>
         </ResponsiveContainer>
     );
@@ -47,21 +47,3 @@ const CityEventsChart = ({ allLocations, events }) => {
 }
 
 export default CityEventsChart;
-
-import React, { useState } from 'react';
-
-// function Example() {
-//     // Declare a new state variable, which we'll call "count"
-//     const [count, setCount] = useState(0);
-
-//     return (
-//         <div>
-//             <p>You clicked {count} times</p>
-//             <button onClick={() => setCount(count + 1)}>
-//                 Click me
-//             </button>
-//         </div>
-//     );
-// }
-
-// export default Example;
