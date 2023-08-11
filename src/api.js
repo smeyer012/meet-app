@@ -4,7 +4,6 @@ import NProgress from 'nprogress';
 
 export const getAccessToken = async () => {
     const accessToken = localStorage.getItem('access_token');
-    console.log("local " + accessToken);
     const tokenCheck = accessToken && (await checkToken(accessToken));
 
     if (!accessToken || tokenCheck.error) {
@@ -75,13 +74,12 @@ const getToken = async (code) => {
     try {
         const encodeCode = encodeURIComponent(code);
 
-        const response = await fetch('https://wy78jb5a1m.execute-api.us-east-2.amazonaws.com/dev/api/token' + '/' + encodeCode);
+        const response = await fetch('https://wy78jb5a1m.execute-api.us-east-2.amazonaws.com/dev/api/token/' + encodeCode);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
         }
         const { access_token } = await response.json();
         access_token && localStorage.setItem("access_token", access_token);
-        console.log("GET " + access_token);
         return access_token;
     } catch (error) {
         console.log(error);

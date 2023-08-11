@@ -19,7 +19,7 @@ class Event extends Component {
                 <p className="eventData"><span className="eventTime">{new Date(event.start.dateTime).toString()}</span><br />
                     &#64; {event.summary} &#124; <span className="eventPlace">{event.location}</span></p>
                 {showDetails && (
-                    <div class="eventDetails">
+                    <div className="eventDetails">
                         <h3>About Event</h3>
                         <a className="eventLink" href="{event.htmlLink}">See Details on Google Calendar</a>
                         <p className="eventDescription">{event.description}</p>
