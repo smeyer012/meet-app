@@ -3,7 +3,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { mockData } from '../mock-data';
 import App from '../App';
-import { updateEvents } from '../App';
+import { location, displayNum } from '../App';
 import NumberOfEvents from '../NumberOfEvents';
 
 const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
@@ -11,7 +11,7 @@ const feature = loadFeature('./src/features/specifyNumberOfEvents.feature');
 defineFeature(feature, test => {
 
     let AppWrapper = mount(<App />);
-    let theNumberOfEvents = shallow(<NumberOfEvents updateEvents={updateEvents} />);
+    let theNumberOfEvents = shallow(<NumberOfEvents displayNum={32} updateEvents={() => { }} location={location} setAlertText={() => { }} />);
 
     test('When user hasn’t specified a number, 32 is the default number.', ({ given, when, then }) => {
         given('a user has not specified a number of events to view', () => {
