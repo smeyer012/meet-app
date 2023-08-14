@@ -1,4 +1,5 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
 import App from '../App';
 import EventList from '../EventList';
@@ -54,7 +55,7 @@ describe('<App /> integration', () => {
         const AppWrapper = mount(<App />);
         const CitySearchWrapper = AppWrapper.find(CitySearch);
         const locations = extractLocations(mockData);
-        CitySearchWrapper.setState({ suggestions: locations });
+        act(() => CitySearchWrapper.setState({ suggestions: locations }));
         const suggestions = CitySearchWrapper.state('suggestions');
         const selectedIndex = Math.floor(Math.random() * (suggestions.length));
         const selectedCity = suggestions[selectedIndex];

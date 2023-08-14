@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { act } from 'react-dom/test-utils';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
@@ -21,11 +22,11 @@ class App extends Component {
         events :
         events.filter((event) => event.location === location);
       const showEvents = locationEvents.slice(0, eventNumber);
-      this.setState({
+      act(() => this.setState({
         events: showEvents,
         displayNum: eventNumber,
         chosenLocation: location
-      });
+      }));
     });
   }
 
@@ -33,7 +34,7 @@ class App extends Component {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
-        this.setState({ events, locations: extractLocations(events) });
+        act(() => this.setState({ events, locations: extractLocations(events) }));
       }
     });
   }

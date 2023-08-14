@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { act } from 'react-dom/test-utils';
 import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {
@@ -9,18 +10,18 @@ class NumberOfEvents extends Component {
     handleInputChanged = (event) => {
         const value = event.target.value;
         this.props.updateEvents(value, this.props.location)
-        this.setState({
+        act(() => this.setState({
             eventNumber: value,
             infoText: ''
-        });
+        }));
         if (value > 32 || value < 1 && value != '') {
-            this.setState({
+            act(() => this.setState({
                 infoText: 'Select number between 1 and 32',
-            });
+            }));
         } else {
-            return this.setState({
+            return act(() => this.setState({
                 infoText: ''
-            });
+            }));
         }
     }
     render() {

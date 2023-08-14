@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { act } from 'react-dom/test-utils';
 import { InfoAlert } from './Alert';
 
 class CitySearch extends Component {
@@ -28,12 +29,12 @@ class CitySearch extends Component {
         }
     }
     handleItemClicked = (suggestion) => {
-        this.setState({
+        act(() => this.setState({
             query: suggestion,
             suggestions: [],
             showSuggestions: false,
             infoText: ''
-        });
+        }));
         this.props.updateEvents(this.props.displayNum, suggestion);
     }
     render() {
