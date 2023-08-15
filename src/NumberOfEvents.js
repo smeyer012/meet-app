@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { act } from 'react-dom/test-utils';
+import { act } from '@testing-library/react';
 import { ErrorAlert } from './Alert';
 
 class NumberOfEvents extends Component {
