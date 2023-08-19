@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { act } from '@testing-library/react';
 
 class NumberOfEvents extends Component {
     state = {
@@ -9,9 +8,9 @@ class NumberOfEvents extends Component {
         const value = event.target.value;
         const infoAlert = 'errorAlert';
         this.props.updateEvents(value, this.props.location)
-        act(() => this.setState({
+        this.setState({
             eventNumber: value,
-        }));
+        });
         let infoText;
         if (value > 32 || value < 1 && value != '') {
             infoText = 'Select number between 1 and 32';
