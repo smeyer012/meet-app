@@ -30,7 +30,7 @@ defineFeature(feature, test => {
         let CitySearchWrapper;
         given('the main page is open', () => {
             const locations = extractLocations(mockData);
-            CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} displayNum={32} locations={locations} />);
+            CitySearchWrapper = shallow(<CitySearch updateEvents={() => { }} displayNum={32} locations={locations} setAlertText={() => { }} />);
         });
 
         when('the user starts typing in the city textbox', () => {

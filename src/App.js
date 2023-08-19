@@ -7,17 +7,40 @@ import NumberOfEvents from './NumberOfEvents';
 import CityEventsChart from './CityEventsChart';
 import EventGenresChart from './EventGenresChart'
 import { getEvents, extractLocations } from './api';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
     displayNum: 32,
-    chosenLocation: ''
+    chosenLocation: '',
+    infoAlert: '',
+    errorAlert: '',
+    warningAlert: ''
+  }
+
+  setAlertText = (alertText, alertType) => {
+    let alertObj = [];
+    alertObj[alertType] = alertText;
+    this.setState(alertObj)
+  }
+
+  onlineCheck() {
+    if (navigator.onLine) {
+      this.setState({
+        warningAlert: ""
+      });
+    } else {
+      this.setState({
+        warningAlert: "You are offline. Events have been loaded from your browser's memory. They may not be the most up-to-date."
+      });
+    }
   }
 
   updateEvents = (eventNumber, location) => {
     getEvents().then((events) => {
+      this.onlineCheck();
       const locationEvents = (location === 'all' || location === undefined || location === '') ?
         events :
         events.filter((event) => event.location === location);
@@ -31,6 +54,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.onlineCheck();
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
@@ -46,8 +70,13 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} displayNum={this.state.displayNum} updateEvents={this.updateEvents} />
-        <NumberOfEvents displayNum={this.state.displayNum} updateEvents={this.updateEvents} location={this.state.chosenLocation} />
+        <div className="alerts-container">
+          {this.state.infoAlert.length ? <InfoAlert text={this.state.infoAlert} /> : null}
+          {this.state.errorAlert.length ? <ErrorAlert text={this.state.errorAlert} /> : null}
+          {this.state.warningAlert.length ? <WarningAlert text={this.state.warningAlert} /> : null}
+        </div>
+        <CitySearch locations={this.state.locations} displayNum={this.state.displayNum} updateEvents={this.updateEvents} setAlertText={this.setAlertText} />
+        <NumberOfEvents displayNum={this.state.displayNum} updateEvents={this.updateEvents} location={this.state.chosenLocation} setAlertText={this.setAlertText} />
         <div className="charts-container">
           {this.state.events && <EventGenresChart events={this.state.events} />}
           {this.state.locations && <CityEventsChart allLocations={this.state.locations} events={this.state.events} />}

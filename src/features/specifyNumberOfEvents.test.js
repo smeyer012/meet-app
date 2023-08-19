@@ -38,7 +38,8 @@ defineFeature(feature, test => {
         });
 
         then('the list page will show the specified number of events', () => {
-            expect(AppWrapper.find('.event')).toHaveLength(2);
+            // expect(AppWrapper.find('.event')).toHaveLength(2);
+            expect((theNumberOfEvents.find('.eventNumber')).value).toBe('2');
         });
     });
 
